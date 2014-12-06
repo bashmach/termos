@@ -60,6 +60,57 @@ exports.logout = function(req, res) {
 };
 
 /**
+ * GET /signup
+ * Signup page.
+ */
+
+exports.getSignup = function(req, res) {
+  if (req.user) return res.redirect('/');
+  res.render('account/signup', {
+    title: 'Create Account'
+  });
+};
+
+/**
+ * POST /signup
+ * Create a new local account.
+ * @param email
+ * @param password
+ */
+
+exports.postSignup = function(req, res, next) {
+  req.assert('email', 'Email is not valid').isEmail();
+  req.assert('password', 'Password must be at least 4 characters long').len(4);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+
+  var errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/signup');
+  }
+
+  var user = new User({
+    email: req.body.email,
+    password: req.body.password
+  });
+
+//   User.findOne({ email: req.body.email }, function(err, existingUser) {
+//     if (existingUser) {
+//       req.flash('errors', { msg: 'Account with that email address already exists.' });
+//       return res.redirect('/signup');
+//     }
+//     user.save(function(err) {
+//       if (err) return next(err);
+//       req.logIn(user, function(err) {
+//         if (err) return next(err);
+//         res.redirect('/');
+//       });
+//     });
+//   });
+};
+
+/**
  * GET /account
  * Profile page.
  */
