@@ -115,23 +115,23 @@ app.post('/account/password', passportConf.isAuthenticated, userController.postU
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 
-// /**
-//  * API examples routes.
-//  */
+/**
+ * API examples routes.
+ */
 
-// app.get('/api', apiController.getApi);
-// app.get('/api/stripe', apiController.getStripe);
-// app.post('/api/stripe', apiController.postStripe);
-// app.get('/api/scraping', apiController.getScraping);
+app.get('/api', apiController.getApi);
+app.get('/api/stripe', apiController.getStripe);
+app.post('/api/stripe', apiController.postStripe);
+app.get('/api/scraping', apiController.getScraping);
 
-// /**
-//  * OAuth sign-in routes.
-//  */
+/**
+ * OAuth sign-in routes.
+ */
 
-// app.get('/auth/twitter', passport.authenticate('twitter'));
-// app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
-//   res.redirect(req.session.returnTo || '/');
-// });
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
 
 /**
  * 500 Error Handler.
