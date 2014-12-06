@@ -1,0 +1,13 @@
+[
+    {
+        "name": "app",
+        "script": "src/app.js",
+        "instances": "1",
+        "max_restarts": "10",
+        "exec_mode" : "fork_mode",
+        "env": {
+            
+        },
+        "watch" : true
+    }
+]
