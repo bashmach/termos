@@ -110,8 +110,12 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  */
 
 app.get('/', homeController.index);
-app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
+
+app.get('/contact', contactController.getContact);
+app.post('/contact', contactController.postContact);
+app.get('/account', passportConf.isAuthenticated, userController.getAccount);
+app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
 
 /**
  * API examples routes.
