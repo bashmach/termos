@@ -1,7 +1,9 @@
-!**/.gitkeep
 .idea
 *.iml
 .DS_Store
 Thumbs.db
 store/*
 logs/*
+
+!**/.gitkeep
+
