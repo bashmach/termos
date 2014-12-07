@@ -2,9 +2,56 @@ extends layout
 
 block content
   h1 Learn about the pitfalls of the legal documents <br/>on your favorite websites
-  p.lead All you need is download our extension from Chrome Web Store. The rest you will see for yourself.
+  p.lead All you need is download our extension from Chrome Web Store. <br/>The rest you will see for yourself with our Termo-indicator.
+  .row
+    .col-sm-10.col-md-offset-1
+      .carousel.slide(id="websites-carousel", data-ride="carousel")
+        ol.carousel-indicators
+          li.active(data-target="#websites-carousel", data-slide-to="0")
+          li(data-target="#websites-carousel", data-slide-to="1")
+          li(data-target="#websites-carousel", data-slide-to="2")
+
+        .carousel-inner(role="listbox")
+          .item.active
+            img(src="/img/websites/facebook-carousel.png", alt="Popular website")
+            .carousel-caption
+              h3 Not every popular website has a clear Terms of Service document
+
+          .item
+            img(src="/img/websites/stackoverflow-carousel.png", alt="Some resources are not very popular")
+            .carousel-caption
+              h3 Some resources are not very popular
+
+          .item
+            img(src="/img/websites/termos-carousel.png", alt="And some are completely open to everyone")
+            .carousel-caption
+              h3 And some are completely open to everyone ;)
+
+        a.left.carousel-control(href="#websites-carousel", role="button", data-slide="prev")
+            span.fa.fa-chevron-left.icon-prev(aria-hidden="true")
+            span.sr-only
+              | Previous
+        a.right.carousel-control(href="#websites-carousel", role="button", data-slide="next")
+            span.fa.fa-chevron-right.icon-next(aria-hidden="true")
+            span.sr-only
+              | Next
+
   hr
   .row
     .col-sm-12
       p.text-center
         a.btn.btn-success(href=storeUrl, role='button', target='_blank') Download from Chrome Web Store »
+  hr
+  .row
+    .col-sm-12
+      .text-center
+        h4 Also you can scan any URL directly from here
+        form.form-search.form-horizontal(action="/scan", method="post")
+          input(type='hidden', name='_csrf', value=_csrf)
+          .input-group.col-md-8.col-md-offset-2
+            input.search-query.form-control(type="text", placeholder="Scan website")
+            span.input-group-btn
+              button.btn(type="submit")
+                i.fa.fa-search
+
+

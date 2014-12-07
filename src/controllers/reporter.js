@@ -7,7 +7,12 @@ var fs = require('fs')
  */
 
 exports.top = function(req, res) {
-  var q = User.find({}).sort({}).limit(20);
+  var q = User.find({
+    $or:[
+      {'score':null}
+      , {'score': { $gt: 0}
+    }]
+  }).sort({}).limit(20);
   q.exec(function(err, topReporters) {
     res.render('reporters/top', {
       title: 'Top Reporters'
