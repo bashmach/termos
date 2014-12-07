@@ -18,6 +18,10 @@
 
 module.exports = {
 
+  chrome: {
+    store_url: 'https://chrome.google.com/webstore/detail/termos/ligegipgnnljgakmcnaglcidenlfhnkf'
+  },
+
   db: process.env.MONGOLAB_URI || process.env.MONGODB || 'mongodb://localhost:27017/test',
 
   sessionSecret: process.env.SESSION_SECRET || 'JdD89xSia',

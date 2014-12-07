@@ -28,7 +28,11 @@ var connectAssets = require('connect-assets');
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
+var extensionController = require('./controllers/extension');
 var contactController = require('./controllers/contact');
+var reporterController = require('./controllers/reporter');
+var measurementController = require('./controllers/measurement');
+
 
 /**
  * API keys and Passport configuration.
@@ -110,8 +114,24 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  */
 
 app.get('/', homeController.index);
-app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
+
+app.get('/contact', contactController.getContact);
+app.post('/contact', contactController.postContact);
+app.get('/account', passportConf.isAuthenticated, userController.getAccount);
+app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
+
+/**
+ * Extension routes
+ */
+app.get('/extension/updates.xml', extensionController.updates);
+app.get('/extension/load/termos-(:version).crx', extensionController.load);
+
+/**
+ * Reporter routes
+ */
+app.get('/reporters/top', reporterController.top);
+app.get('/top', reporterController.top);
 
 /**
  * API examples routes.
@@ -128,8 +148,14 @@ app.get('/api/scraping', apiController.getScraping);
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect(req.session.returnTo || '/');
+  res.redirect('/');
 });
+
+/**
+ * Control routes.
+ */
+
+app.get('/measurement/take', measurementController.take);
 
 /**
  * 500 Error Handler.
