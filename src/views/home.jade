@@ -1,8 +1,13 @@
 extends layout
 
 block content
-  h1 Learn about the pitfalls of the legal documents <br/>on your favorite websites
-  p.lead All you need is download our extension from Chrome Web Store. <br/>The rest you will see for yourself with our Termo-indicator.
+  h1 Learn about the <strong>pitfalls of  <br/>the legal documents</strong> of your favorite websites
+  p.lead
+    | All you need is
+    | <a href="#{storeUrl}">download our extension</a>
+    | from Chrome Web Store. <br/>The rest you will learn through our
+    | <img src="http://bashmach.koding.io/img/icons/cold-38.png">
+    |Termo-indicator.
   .row
     .col-sm-10.col-md-offset-1
       .carousel.slide(id="websites-carousel", data-ride="carousel")
@@ -15,17 +20,17 @@ block content
           .item.active
             img(src="/img/websites/facebook-carousel.png", alt="Popular website")
             .carousel-caption
-              h3 Not every popular website has a clear Terms of Service document
+              h3 Not every popular website has a clear legal documents
 
           .item
-            img(src="/img/websites/stackoverflow-carousel.png", alt="Some resources are not very popular")
+            img(src="/img/websites/stackoverflow-carousel.png", alt="On some resources they are very usual")
             .carousel-caption
-              h3 Some resources are not very popular
+              h3 On some resources they are very usual
 
           .item
-            img(src="/img/websites/termos-carousel.png", alt="And some are completely open to everyone")
+            img(src="/img/websites/termos-carousel.png", alt="On others they are completely clear to everyone")
             .carousel-caption
-              h3 And some are completely open to everyone ;)
+              h3 On others they are completely clear to everyone ;)
 
         a.left.carousel-control(href="#websites-carousel", role="button", data-slide="prev")
             span.fa.fa-chevron-left.icon-prev(aria-hidden="true")
