@@ -18,7 +18,7 @@ exports.top = function(req, res) {
       title: 'Top Reporters'
       , reporters: topReporters
     });
-  });;
+  });
 
 
 };

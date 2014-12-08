@@ -54,9 +54,13 @@ block content
         form.form-search.form-horizontal(action="/scan", method="post")
           input(type='hidden', name='_csrf', value=_csrf)
           .input-group.col-md-8.col-md-offset-2
-            input.search-query.form-control(type="text", placeholder="Scan website")
+            input.search-query.form-control(name="domain", type="text", placeholder="Scan website")
             span.input-group-btn
               button.btn(type="submit")
                 i.fa.fa-search
+            .clearfix
+          p
+            | For example:
+            | <a href="http://bashmach.koding.io/scan/bashmach.koding.io">bashmach.koding.io</a> or <a href="http://bashmach.koding.io/scan/www.facebook.com">www.facebook.com</a>
 
 

@@ -4,6 +4,7 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var secrets = require('../config/secrets');
+var passportConf = require('../config/passport');
 var User = require('../models/User');
 
 /**
@@ -36,6 +37,17 @@ exports.logout = function(req, res) {
 exports.getAccount = function(req, res) {
   res.render('account/profile', {
     title: 'Account Management'
+  });
+};
+
+/**
+ * GET /authorized
+ * Profile page.
+ */
+
+exports.isAuthorized = function(req, res) {
+  res.json({
+    authorized: req.isAuthenticated()
   });
 };
 

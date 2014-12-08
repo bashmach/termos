@@ -22,7 +22,7 @@ exports.take = function(req, res) {
       break;
   }
 
-  res.json({'temperature': temperature});
+  res.json({'temperature': temperature, domain: req.query.domain});
 };
 
 

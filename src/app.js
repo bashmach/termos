@@ -31,7 +31,9 @@ var apiController = require('./controllers/api');
 var extensionController = require('./controllers/extension');
 var contactController = require('./controllers/contact');
 var reporterController = require('./controllers/reporter');
+var scanController = require('./controllers/scan');
 var measurementController = require('./controllers/measurement');
+var reportController = require('./controllers/report');
 
 
 /**
@@ -60,7 +62,7 @@ mongoose.connection.on('error', function() {
  * CSRF whitelist.
  */
 
-var csrfExclude = ['/url1', '/url2'];
+var csrfExclude = ['/report'];
 
 /**
  * Express configuration.
@@ -120,6 +122,7 @@ app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
 app.get('/account', passportConf.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
+app.get('/authorized', userController.isAuthorized);
 
 /**
  * Extension routes
@@ -132,6 +135,17 @@ app.get('/extension/load/termos-(:version).crx', extensionController.load);
  */
 app.get('/reporters/top', reporterController.top);
 app.get('/top', reporterController.top);
+
+/**
+ * Scan routes
+ */
+app.get('/scan/:domain', scanController.scan);
+app.post('/scan', scanController.postScan);
+
+/**
+ * Scan routes
+ */
+app.post('/report', reportController.postReport);
 
 /**
  * API examples routes.

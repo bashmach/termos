@@ -1,21 +1,32 @@
 var fs = require('fs')
   , path = require('path')
-  , User = require('../models/User');
+  , User = require('../models/User')
+  , Report = require('../models/Report');
 
 /**
  * GET /scan
  */
 
-exports.get = function(req, res) {
+exports.scan = function(req, res) {
 
-  throw Error('Not implemented yet :(');
+  var q = Report.find({'domain':req.params.domain}).sort({});
+  q.exec(function(err, reports) {
+    console.log('reports', reports);
+
+    res.render('scan/results', {
+      title: 'Reviews of ' + req.params.domain
+      , domain: req.params.domain
+      , reports: reports
+      , schema: new Report()
+    });
+  });
+
 
 };
 
-exports.post = function(req, res) {
+exports.postScan = function(req, res) {
 
-  throw Error('Not implemented yet :(');
+  res.redirect('/scan/'+req.body.domain);
 
 };
-
 

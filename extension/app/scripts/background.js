@@ -24,7 +24,6 @@
     _setDefaultIcon(function() {
       // fetch data from another domain with JSONP
       $.getJSON('http://bashmach.koding.io/measurement/take?domain='+_getDomain(request.url), function(response){
-        console.log('response', response);
 
         chrome.browserAction.setIcon({path: 'http://bashmach.koding.io/img/icons/'+response.temperature+'-38.png'}, function(e, d) {
           console.log(e, d);
