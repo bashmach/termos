@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css styles/main.css -->
+        <link href="styles/main.css" rel="stylesheet">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="review">
+
+            <div class="container">
+                <div class="row resolution">
+                    <div class="hidden col-xs-12 success bg-success">
+                        <div class="col-xs-2">
+                            <span><img src="http://bashmach.koding.io/img/icons/success-38.png"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            Termos Community approves this website
+                        </div>
+                    </div>
+                    <div class="hidden col-xs-12 cold bg-info">
+                        <div class="col-xs-2">
+                            <span><img src="http://bashmach.koding.io/img/icons/cold-38.png"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            Termos Community is cold to this website
+                        </div>
+                    </div>
+                    <div class="hidden col-xs-12 danger bg-danger">
+                        <div class="col-xs-2">
+                            <span><img src="http://bashmach.koding.io/img/icons/danger-38.png"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            Termos Community warns about this website
+                        </div>
+                    </div>
+                    <div class="hidden col-xs-12 unknown bg-warning">
+                        <div class="col-xs-2">
+                            <span><img src="http://bashmach.koding.io/img/icons/unknown-38.png"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            Termos Community don't know this website
+                        </div>
+                    </div>
+                    <div class="col-xs-12 spinner">
+                        <p class="text-center">
+                            <img src="/images/spinner.gif" />
+                        </p>
+                    </div>
+                    <div class="form-group hidden link">
+                        <a href="#" class="pull-right">What does it mean?</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container anonymous-container hidden text-center">
+            <a href="http://bashmach.koding.io/auth/twitter" target="_blank" class="btn btn-info">
+                <i class="glyphicon"></i> Sign in on Termos</a>
+        </div>
+
+        <div class="container authorized-container hidden">
+            <hr>
+            <form action="" method="POST" role="form">
+                <div class="row">
+                    <div class="form-group always-visible">
+                        <label class="col-sm-2 control-label">Have you read some legal documents of this website?</label>
+                        <div class="radio">
+                            <label class="radio-inline">
+                                <input type="radio" name="read-or-not" value="yes">
+                                Yes
+                            </label>
+                            <label>
+                                <input type="radio" name="read-or-not" value="no" checked>
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group text-center hidden">
+                        <label class="col-sm-2 control-label">URL of document</label>
+
+                        <input class="form-control" name="url" type="text" value="">
+                    </div>
+                    <div class="form-group text-center hidden">
+                        <input type="hidden" value="none" name="action" />
+                        <label class="col-sm-2 control-label">What do you think about it?</label>
+
+                        <div class="btn-group" role="group" aria-label="...">
+                            <span class="btn btn-danger" data-action="dislike"><i class="glyphicon glyphicon-thumbs-down"></i> Dislike</span>
+                            <span class="btn btn-default" data-action="none">Neutral</span>
+                            <span class="btn btn-success" data-action="like"><i class="glyphicon glyphicon-thumbs-up"></i> Like</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center almost-always-visible hidden">
+                        <label class="col-sm-2 control-label">Paste a fragment of document</label>
+
+                        <textarea class="form-control" name="text" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group text-center hidden">
+                        <button type="button" class="btn btn-info pull-right disabled">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/zepto/zepto.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js scripts/popup.js -->
+        <script src="scripts/popup.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>

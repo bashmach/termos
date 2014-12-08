@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Top 5 Reporters
+
+    ul.list-group.top-reporters
+      each reporter in reporters
+        li.list-group-item
+          .col-xs-12.col-sm-1
+            p.text-center
+              img.img-circle(src=reporter.profile.picture, alt=reporter.profile.name)
+          .col-xs-12.col-sm-11
+            span.name
+              | #{reporter.profile.name} <br/>
+            span.location
+              | #{reporter.profile.location}
+          .clearfix

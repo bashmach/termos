@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .page-header
+    h2 <strong>#{requestDomain}</strong>
+
+  .reports
+    .row.resolution
+      div(class="col-xs-4 bg-#{domain.getTemperature()}")
+        .col-xs-2
+          span
+            img(src="http://bashmach.koding.io/img/icons/#{domain.getTemperature()}-38.png")
+        .col-xs-10
+          | #{domain.getResolution()}
+    if reports.length > 0
+      .row
+        h3 Reviews
+        ul.list-group
+          each report in reports
+            li(class="#{schema.getContext(report.action)}")
+              .col-xs-12
+                .col-sm-1
+                  p.text-center
+                    img.img-circle(src=report.user.picture, alt=report.user.name)
+                .col-sm-11
+                  span.name
+                    | #{report.text} <br/>
+                  span.url
+                    | #{report.url}
+              .clearfix
+

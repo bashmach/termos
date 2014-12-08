@@ -1,27 +1,66 @@
 extends layout
 
 block content
-  h1 Hackathon Starter
-  p.lead A boilerplate for Node.js web applications.
+  h1 Learn about the <strong>pitfalls of  <br/>the legal documents</strong> of your favorite websites
+  p.lead
+    | All you need is
+    | <a href="#{storeUrl}">download our extension</a>
+    | from Chrome Web Store. <br/>The rest you will learn through our
+    | <img src="http://bashmach.koding.io/img/icons/cold-38.png">
+    |Termo-indicator.
+  .row
+    .col-sm-10.col-md-offset-1
+      .carousel.slide(id="websites-carousel", data-ride="carousel")
+        ol.carousel-indicators
+          li.active(data-target="#websites-carousel", data-slide-to="0")
+          li(data-target="#websites-carousel", data-slide-to="1")
+          li(data-target="#websites-carousel", data-slide-to="2")
+
+        .carousel-inner(role="listbox")
+          .item.active
+            img(src="/img/websites/facebook-carousel.png", alt="Popular website")
+            .carousel-caption
+              h3 Not every popular website has a clear legal documents
+
+          .item
+            img(src="/img/websites/stackoverflow-carousel.png", alt="On some resources they are very usual")
+            .carousel-caption
+              h3 On some resources they are very usual
+
+          .item
+            img(src="/img/websites/termos-carousel.png", alt="On others they are completely clear to everyone")
+            .carousel-caption
+              h3 On others they are completely clear to everyone ;)
+
+        a.left.carousel-control(href="#websites-carousel", role="button", data-slide="prev")
+            span.fa.fa-chevron-left.icon-prev(aria-hidden="true")
+            span.sr-only
+              | Previous
+        a.right.carousel-control(href="#websites-carousel", role="button", data-slide="next")
+            span.fa.fa-chevron-right.icon-next(aria-hidden="true")
+            span.sr-only
+              | Next
+
   hr
   .row
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details »
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details »
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details »
-    .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details »
+    .col-sm-12
+      p.text-center
+        a.btn.btn-success(href=storeUrl, role='button', target='_blank') Download from Chrome Web Store »
+  hr
+  .row
+    .col-sm-12
+      .text-center
+        h4 Also you can scan any URL directly from here
+        form.form-search.form-horizontal(action="/scan", method="post")
+          input(type='hidden', name='_csrf', value=_csrf)
+          .input-group.col-md-8.col-md-offset-2
+            input.search-query.form-control(name="domain", type="text", placeholder="Scan website")
+            span.input-group-btn
+              button.btn(type="submit")
+                i.fa.fa-search
+            .clearfix
+          p
+            | For example:
+            | <a href="http://bashmach.koding.io/scan/bashmach.koding.io">bashmach.koding.io</a> or <a href="http://bashmach.koding.io/scan/www.facebook.com">www.facebook.com</a>
+
+

@@ -28,7 +28,13 @@ var connectAssets = require('connect-assets');
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
+var extensionController = require('./controllers/extension');
 var contactController = require('./controllers/contact');
+var reporterController = require('./controllers/reporter');
+var scanController = require('./controllers/scan');
+var measurementController = require('./controllers/measurement');
+var reportController = require('./controllers/report');
+
 
 /**
  * API keys and Passport configuration.
@@ -56,7 +62,7 @@ mongoose.connection.on('error', function() {
  * CSRF whitelist.
  */
 
-var csrfExclude = ['/url1', '/url2'];
+var csrfExclude = ['/report'];
 
 /**
  * Express configuration.
@@ -116,6 +122,30 @@ app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
 app.get('/account', passportConf.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
+app.get('/authorized', userController.isAuthorized);
+
+/**
+ * Extension routes
+ */
+app.get('/extension/updates.xml', extensionController.updates);
+app.get('/extension/load/termos-(:version).crx', extensionController.load);
+
+/**
+ * Reporter routes
+ */
+app.get('/reporters/top', reporterController.top);
+app.get('/top', reporterController.top);
+
+/**
+ * Scan routes
+ */
+app.get('/scan/:domain', scanController.scan);
+app.post('/scan', scanController.postScan);
+
+/**
+ * Scan routes
+ */
+app.post('/report', reportController.postReport);
 
 /**
  * API examples routes.
@@ -132,8 +162,14 @@ app.get('/api/scraping', apiController.getScraping);
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect(req.session.returnTo || '/');
+  res.redirect('/');
 });
+
+/**
+ * Control routes.
+ */
+
+app.get('/measurement/take', measurementController.take);
 
 /**
  * 500 Error Handler.

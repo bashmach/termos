@@ -1,0 +1,16 @@
+body {
+  padding: 20px;
+    width: 320px;
+}
+
+.resolution {
+    padding: 0.5em 0;
+}
+
+.resolution .col-xs-12 {
+    padding: 0.5em 0;
+}
+
+.resolution .form-group {
+    margin-bottom: 0;
+}
