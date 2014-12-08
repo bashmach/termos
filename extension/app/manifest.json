@@ -1,18 +1,18 @@
 {
     "name": "Termos",
-    "version": "0.0.26",
+    "version": "0.0.32",
     "manifest_version": 2,
-    "description": "Disclosure of pitfalls of the legal documents on the web",
+    "description": "Disclosure of pitfalls of the legal documents of the web",
     "icons": {
-        "16": "images/icon-16.png",
-        "128": "images/icon-128.png"
+        "16": "images/unknown-19.png",
+        "128": "images/unknown-38.png"
     },
     "default_locale": "en",
     "background": {
         "scripts": [
-            "scripts/chromereload.js",
             "scripts/background.js",
-            "bower_components/zepto/zepto.min.js"
+            "scripts/livereload.js",
+            "scripts/vendor.js"
         ]
     },
     "browser_action": {

@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var Domain = require('./Domain');
 
 var reportSchema = new mongoose.Schema({
   domain: { type: String, lowercase: true },
@@ -16,7 +17,26 @@ var reportSchema = new mongoose.Schema({
 });
 
 reportSchema.pre('save', function(next) {
-  next();
+  var report = this;
+
+  var q = Domain.where({domain: report.domain});
+  q.findOne(function(err, domain) {
+    if (err || !domain) {
+      domain = new Domain();
+      domain.domain = report.domain;
+      domain.points = 0;
+    }
+
+    if (report.action == 'like') {
+      domain.points = domain.points + 10;
+    } else if (report.action == 'dislike') {
+      domain.points = domain.points - 10;
+    }
+
+    domain.save(function() {
+      next();
+    })
+  });
 });
 
 reportSchema.methods.getContext = function(action) {

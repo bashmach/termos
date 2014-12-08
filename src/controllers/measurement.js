@@ -1,28 +1,27 @@
 var fs = require('fs')
-  , path = require('path');
+  , path = require('path')
+  , Domain = require('../models/Domain');
 
 /**
  * GET /measurement/take
  */
 
 exports.take = function(req, res) {
-  console.log('req', req.query);
+  Domain.findOne({domain: req.query.domain}).exec(function(err, domain) {
+    if (err) {
+      return res.status(404)        // HTTP status 404: NotFound
+        .send('Not found')
+        .end();
+    }
 
-  var temperature = 'unknown';
+    if (!domain) {
+      domain = new Domain();
+    }
 
-  switch (req.query.domain) {
-    case 'github.com':
-      temperature = 'fishily';
-      break;
-    case 'bashmach.koding.io':
-      temperature = 'success';
-      break;
-    case 'www.facebook.com':
-      temperature = 'danger';
-      break;
-  }
+    res.json({'temperature': domain.getTemperature(), domain: req.query.domain});
+  });
 
-  res.json({'temperature': temperature, domain: req.query.domain});
+
 };
 
 

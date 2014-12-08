@@ -2,7 +2,8 @@
   "name": "termos",
   "version": "0.0.0",
   "dependencies": {
-    "crx": "^2.0.0"
+    "crx": "^2.0.0",
+    "grunt-crx": "^0.3.4"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -239,11 +239,19 @@ module.exports = function (grunt) {
             'images/{,*/}*.{webp,gif}',
             '{,*/}*.html',
             'styles/{,*/}*.css',
-            'styles/fonts/{,*/}*.*',
             '_locales/{,*/}*.json',
           ]
         }]
+      },
+      fonts: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/bower_components/bootstrap/dist/fonts',
+          src: ['*.*'],
+          dest: '<%= config.dist %>/fonts'
+        }]
       }
+
     },
 
     // Run some tasks in parallel to speed up build process
@@ -265,6 +273,9 @@ module.exports = function (grunt) {
           buildnumber: true,
           background: {
             target: 'scripts/background.js',
+            scripts: [
+              'scripts/vendor.js'
+            ],
             exclude: [
               'scripts/chromereload.js'
             ]
@@ -290,14 +301,6 @@ module.exports = function (grunt) {
           src: ['**'],
           dest: ''
         }]
-      }
-    },
-
-    crx: {
-      termos: {
-        "src": "app/",
-        "dest": "package/",
-        "privateKey": "key.pem"
       }
     }
   });
@@ -326,8 +329,7 @@ module.exports = function (grunt) {
     'uglify',
     'copy',
     'usemin',
-    'compress',
-    'crx'
+    'compress'
   ]);
 
   grunt.registerTask('default', [
